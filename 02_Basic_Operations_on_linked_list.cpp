@@ -12,6 +12,8 @@ class Node
 };
 
 void displayLinkedList(Node* head);
+void insertAtBegining(Node** head, int key);
+void insertAtEnd(Node** head, int data);
 
 int main()
 {
@@ -45,9 +47,14 @@ int main()
     
     fourth->key = 15;
     fourth->next = NULL;
-    
 
-    
+    displayLinkedList(head);
+    insertAtBegining(&head,11); 
+    insertAtBegining(&head,10);
+    insertAtBegining(&head,9);
+    insertAtEnd(&head,16);
+    insertAtEnd(&head,17);
+    insertAtEnd(&head,18);
     displayLinkedList(head);
     
     return 0;
@@ -59,10 +66,40 @@ void displayLinkedList(Node* head)
 {
     Node* ptr = head;
     
-    cout<<"Keys in the liknked list....\n";
+    cout<<"\nKeys in the liknked list....\n";
     while(ptr!=NULL)
     {
         cout<<ptr->key<<" ";
         ptr = ptr->next;
     }
+}
+
+void insertAtBegining(Node** head, int key)
+{
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->key = key;
+    
+    newNode->next = *head;
+    *head = newNode;
+}
+
+void insertAtEnd(Node** head, int data) {
+  Node* NewNode = (Node*)malloc(sizeof(Node));
+  Node* lastNode = *head;
+  
+  
+  NewNode->key = data;
+  NewNode->next = NULL;
+
+  if(*head==NULL)
+  {
+      *head = NewNode;
+      return;
+  }
+  
+  while(lastNode->next != NULL)
+  {
+      lastNode = lastNode->next;
+  }
+  lastNode->next = NewNode;
 }
