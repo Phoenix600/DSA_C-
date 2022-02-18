@@ -13,7 +13,7 @@ class Node
 
 void displayLinkedList(Node* head);
 void insertAtBegining(Node** head, int key);
-void insertAtEnd(Node** head, int data);
+void insertAtEnd(Node** head, int key);
 
 int main()
 {
@@ -83,23 +83,25 @@ void insertAtBegining(Node** head, int key)
     *head = newNode;
 }
 
-void insertAtEnd(Node** head, int data) {
-  Node* NewNode = (Node*)malloc(sizeof(Node));
-  Node* lastNode = *head;
-  
-  
-  NewNode->key = data;
-  NewNode->next = NULL;
+void insertAtEnd(Node** head, int key) {
 
-  if(*head==NULL)
-  {
-      *head = NewNode;
-      return;
-  }
-  
-  while(lastNode->next != NULL)
-  {
-      lastNode = lastNode->next;
-  }
-  lastNode->next = NewNode;
+Node* newNode = (Node*)malloc(sizeof(Node));
+Node* lastNode = *head;
+
+newNode->key = key;
+newNode->next = NULL;
+
+    if(*head == NULL)
+    {
+        // Basically list is empty
+        *head = newNode;
+        return ;
+    }
+
+    while(lastNode->next != NULL)
+    {
+        lastNode = lastNode->next;
+    }
+    
+    lastNode->next = newNode;
 }
